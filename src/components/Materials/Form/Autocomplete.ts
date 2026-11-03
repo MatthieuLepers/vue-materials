@@ -1,11 +1,17 @@
+import type { Ref } from 'vue';
+
 import type {
-  IEmits as ISelectEmits,
   IProps as ISelectProps,
   ISlots as ISelectSlots,
 } from '@/components/Materials/Form/Select';
 import type { ComboboxOption } from '@/components/Materials/Headless/Combobox';
 
-export interface IEmits<TOption extends ComboboxOption = ComboboxOption> extends ISelectEmits<TOption> {
+export interface IEmits<TOption extends ComboboxOption = ComboboxOption> {
+  keydownEnter: [searchText: Ref<string>];
+  optionUnselected: [option: TOption];
+  optionSelected: [option: TOption];
+  focus: [focused: boolean];
+  blur: [focused: boolean];
   fetchOptions: [options: Array<TOption>];
 }
 
