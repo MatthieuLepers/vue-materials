@@ -1,30 +1,36 @@
 import { computed, type Ref } from 'vue';
 
-import type { FileEntity } from '@/core/entities/file';
 import { useElementSize } from '@/composables/useElementSize';
 
-export type JustifiedGalleryItem = {
-  file: FileEntity;
+export type TFileEntity = {
+  id: number;
+  aspectRatio: number;
   width: number;
   height: number;
 };
 
-export type JustifiedGalleryRow = {
-  items: Array<JustifiedGalleryItem>;
+export type JustifiedGalleryItem<TFile extends TFileEntity = TFileEntity> = {
+  file: TFile;
+  width: number;
+  height: number;
 };
 
-export const useJustifiedGallery = (
-  files: Ref<Array<FileEntity>>,
+export type JustifiedGalleryRow<TFile extends TFileEntity = TFileEntity> = {
+  items: Array<JustifiedGalleryItem<TFile>>;
+};
+
+export const useJustifiedGallery = <TFile extends TFileEntity>(
+  files: Ref<Array<TFile>>,
   container: Ref<HTMLElement | null>,
   targetRowHeight: number = 250,
   gap: number = 8,
 ) => {
   const { width } = useElementSize(container);
 
-  const rows = computed<JustifiedGalleryRow[]>(() => {
-    const result: JustifiedGalleryRow[] = [];
+  const rows = computed<JustifiedGalleryRow<TFile>[]>(() => {
+    const result: JustifiedGalleryRow<TFile>[] = [];
 
-    let currentRow: FileEntity[] = [];
+    let currentRow: TFile[] = [];
     let currentRatioSum = 0;
 
     files.value.forEach((file) => {
@@ -62,7 +68,5 @@ export const useJustifiedGallery = (
     return result;
   });
 
-  return {
-    rows,
-  };
+  return { rows };
 };

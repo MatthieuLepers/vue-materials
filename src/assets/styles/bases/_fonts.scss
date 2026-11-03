@@ -3,11 +3,11 @@
 
 @font-face {
   font-family: 'Open Sans';
-  src: url('~fonts/opensans/opensans-regular.eot');
-  src: url('~fonts/opensans/opensans-regular.eot?#iefix') format('embedded-opentype'),
-       url('~fonts/opensans/opensans-regular.woff2') format('woff2'),
-       url('~fonts/opensans/opensans-regular.woff') format('woff'),
-       url('~fonts/opensans/opensans-regular.ttf') format('truetype');
+  src: url('~fonts/opensans/opensans-regular.eot?no-inline');
+  src: url('~fonts/opensans/opensans-regular.eot?no-inline#iefix') format('embedded-opentype'),
+       url('~fonts/opensans/opensans-regular.woff2?no-inline') format('woff2'),
+       url('~fonts/opensans/opensans-regular.woff?no-inline') format('woff'),
+       url('~fonts/opensans/opensans-regular.ttf?no-inline') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: block;
@@ -15,11 +15,11 @@
 
 @font-face {
   font-family: 'Open Sans';
-  src: url('~fonts/opensans/opensans-italic.eot');
-  src: url('~fonts/opensans/opensans-italic.eot?#iefix') format('embedded-opentype'),
-       url('~fonts/opensans/opensans-italic.woff2') format('woff2'),
-       url('~fonts/opensans/opensans-italic.woff') format('woff'),
-       url('~fonts/opensans/opensans-italic.ttf') format('truetype');
+  src: url('~fonts/opensans/opensans-italic.eot?no-inline');
+  src: url('~fonts/opensans/opensans-italic.eot?no-inline#iefix') format('embedded-opentype'),
+       url('~fonts/opensans/opensans-italic.woff2?no-inline') format('woff2'),
+       url('~fonts/opensans/opensans-italic.woff?no-inline') format('woff'),
+       url('~fonts/opensans/opensans-italic.ttf?no-inline') format('truetype');
   font-weight: 400;
   font-style: italic;
   font-display: block;
@@ -27,11 +27,11 @@
 
 @font-face {
   font-family: 'Open Sans';
-  src: url('~fonts/opensans/opensans-semibold.eot');
-  src: url('~fonts/opensans/opensans-semibold.eot?#iefix') format('embedded-opentype'),
-       url('~fonts/opensans/opensans-semibold.woff2') format('woff2'),
-       url('~fonts/opensans/opensans-semibold.woff') format('woff'),
-       url('~fonts/opensans/opensans-semibold.ttf') format('truetype');
+  src: url('~fonts/opensans/opensans-semibold.eot?no-inline');
+  src: url('~fonts/opensans/opensans-semibold.eot?no-inline#iefix') format('embedded-opentype'),
+       url('~fonts/opensans/opensans-semibold.woff2?no-inline') format('woff2'),
+       url('~fonts/opensans/opensans-semibold.woff?no-inline') format('woff'),
+       url('~fonts/opensans/opensans-semibold.ttf?no-inline') format('truetype');
   font-weight: 600;
   font-style: normal;
   font-display: block;
@@ -39,11 +39,11 @@
 
 @font-face {
   font-family: 'Open Sans';
-  src: url('~fonts/opensans/opensans-bold.eot');
-  src: url('~fonts/opensans/opensans-bold.eot?#iefix') format('embedded-opentype'),
-       url('~fonts/opensans/opensans-bold.woff2') format('woff2'),
-       url('~fonts/opensans/opensans-bold.woff') format('woff'),
-       url('~fonts/opensans/opensans-bold.ttf') format('truetype');
+  src: url('~fonts/opensans/opensans-bold.eot?no-inline');
+  src: url('~fonts/opensans/opensans-bold.eot?no-inline#iefix') format('embedded-opentype'),
+       url('~fonts/opensans/opensans-bold.woff2?no-inline') format('woff2'),
+       url('~fonts/opensans/opensans-bold.woff?no-inline') format('woff'),
+       url('~fonts/opensans/opensans-bold.ttf?no-inline') format('truetype');
   font-weight: 700;
   font-style: normal;
   font-display: block;
@@ -51,11 +51,11 @@
 
 @font-face {
   font-family: 'Open Sans';
-  src: url('~fonts/opensans/opensans-extrabold.eot');
-  src: url('~fonts/opensans/opensans-extrabold.eot?#iefix') format('embedded-opentype'),
-       url('~fonts/opensans/opensans-extrabold.woff2') format('woff2'),
-       url('~fonts/opensans/opensans-extrabold.woff') format('woff'),
-       url('~fonts/opensans/opensans-extrabold.ttf') format('truetype');
+  src: url('~fonts/opensans/opensans-extrabold.eot?no-inline');
+  src: url('~fonts/opensans/opensans-extrabold.eot?no-inline#iefix') format('embedded-opentype'),
+       url('~fonts/opensans/opensans-extrabold.woff2?no-inline') format('woff2'),
+       url('~fonts/opensans/opensans-extrabold.woff?no-inline') format('woff'),
+       url('~fonts/opensans/opensans-extrabold.ttf?no-inline') format('truetype');
   font-weight: 900;
   font-style: normal;
   font-display: block;

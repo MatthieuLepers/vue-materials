@@ -1,5 +1,6 @@
 <template>
   <MaterialFormSelect
+    :options="options"
     v-bind="{
       id: fieldId,
       label: props.label,
@@ -8,7 +9,6 @@
       disabled: props.disabled,
       variant: props.variant,
       modifiers: props.modifiers,
-      options,
       searchable: true,
       inputPlaceholder: props.inputPlaceholder,
       dropdownPosition: props.dropdownPosition,
@@ -51,9 +51,9 @@ import {
 import MaterialFormSelect from '@/components/Materials/Form/Select.vue';
 
 import { debounce } from '@/core/utils';
-import type { IEmits, IProps,ISlots } from '@/components/Materials/Form/Autocomplete';
+import type { IEmits, IProps, ISlots } from '@/components/Materials/Form/AsyncSelector';
 import type { ComboboxModelValue, ComboboxOption } from '@/components/Materials/Headless/Combobox';
-import { type BaseFieldProps,useField } from '@/components/Materials/Headless/Field';
+import { type BaseFieldProps, useField } from '@/components/Materials/Headless/Field';
 
 defineOptions({ name: 'FormAutocomplete' });
 
@@ -92,7 +92,7 @@ async function loadData() {
   options.value = [];
   loading.value = true;
   try {
-    options.value = await props.find(search.value);
+    options.value = await props.fetch(search.value);
   } finally {
     loading.value = false;
   }

@@ -35,14 +35,14 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" generic="TFile extends TFileEntity = TFileEntity">
 import { ref, toRef, watch } from 'vue';
 
-import type { FileEntity } from '@/core/entities/file';
-import { type JustifiedGalleryItem, useJustifiedGallery } from '@/composables/useJustifiedGallery';
+import type { JustifiedGalleryItem, TFileEntity } from '@/composables/useJustifiedGallery';
+import { useJustifiedGallery } from '@/composables/useJustifiedGallery';
 
 const props = withDefaults(defineProps<{
-  files: Array<FileEntity>;
+  files: Array<TFile>;
   rowHeight?: number;
   gap?: number;
 }>(), {
@@ -51,10 +51,10 @@ const props = withDefaults(defineProps<{
 });
 
 type ItemSlotProps = {
-  item: JustifiedGalleryItem;
+  item: JustifiedGalleryItem<TFile>;
   onLoad: () => void;
   onError: () => void;
-}
+};
 
 defineSlots<{
   item(props: ItemSlotProps): void;
@@ -82,9 +82,7 @@ const { rows } = useJustifiedGallery(
 );
 
 watch(() => props.files, (files) => {
-  const currentIds = new Set(
-    files.map((file) => file.id),
-  );
+  const currentIds = new Set(files.map((file) => file.id));
 
   loaded.value.forEach((id) => {
     if (!currentIds.has(id)) {
