@@ -35,15 +35,10 @@
   </div>
 </template>
 
-<script setup lang="ts" generic="TFile extends GalleryFile = GalleryFile">
+<script setup lang="ts" generic="TFile extends { id: number; aspectRatio: number } = { id: number; aspectRatio: number }">
 import { ref, toRef, watch } from 'vue';
 
 import { type JustifiedGalleryItem, useJustifiedGallery } from '@/composables/useJustifiedGallery';
-
-type GalleryFile = {
-  id: number;
-  aspectRatio: number;
-};
 
 const props = withDefaults(defineProps<{
   files: Array<TFile>;

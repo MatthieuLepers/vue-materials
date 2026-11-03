@@ -51,9 +51,9 @@ import {
 import MaterialFormSelect from '@/components/Materials/Form/Select.vue';
 
 import { debounce } from '@/core/utils';
-import type { IEmits, IProps,ISlots } from '@/components/Materials/Form/Autocomplete';
+import type { IProps, ISlots } from '@/components/Materials/Form/Autocomplete';
 import type { ComboboxModelValue, ComboboxOption } from '@/components/Materials/Headless/Combobox';
-import { type BaseFieldProps,useField } from '@/components/Materials/Headless/Field';
+import { type BaseFieldProps, useField } from '@/components/Materials/Headless/Field';
 
 defineOptions({ name: 'FormAutocomplete' });
 
@@ -75,7 +75,13 @@ const search = defineModel<string>('search', { default: '' });
 const $uid = getCurrentInstance()?.uid;
 const fieldId = props.id ?? `autocomplete${$uid}`;
 
-const emit = defineEmits<IEmits<TOption> & {
+const emit = defineEmits<{
+  keydownEnter: [searchText: import('vue').Ref<string>];
+  optionUnselected: [option: TOption];
+  optionSelected: [option: TOption];
+  focus: [focused: boolean];
+  blur: [focused: boolean];
+  fetchOptions: [options: Array<TOption>];
   'update:modelValue': [value: ComboboxModelValue];
 }>();
 
