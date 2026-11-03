@@ -1,7 +1,8 @@
-export { default as useClickOutside } from './useClickOutside';
-export { default as useElementSize } from './useElementSize';
-export { default as useFocusTrap } from './useFocusTrap';
-export { default as useInertOthers } from './useInertOthers';
-export { default as useJustifiedGallery } from './useJustifiedGallery';
-export { default as useRestoreFocus } from './useRestoreFocus';
-export { default as useUserActivity } from './useUserActivity';
+export { useClickOutside } from './useClickOutside';
+export { useElementSize } from './useElementSize';
+export { useFocusTrap } from './useFocusTrap';
+export { useInertOthers } from './useInertOthers';
+export { useJustifiedGallery } from './useJustifiedGallery';
+export type { JustifiedGalleryItem, JustifiedGalleryRow } from './useJustifiedGallery';
+export { useRestoreFocus } from './useRestoreFocus';
+export { useUserActivity } from './useUserActivity';

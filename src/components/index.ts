@@ -39,13 +39,22 @@ export { default as TreeViewNode } from './Materials/TreeView/Node.vue';
 
 export type { ISlots as ButtonSlots, ColorModifiers, StyleModifiers, Modifiers as ButtonModifiers, IProps as ButtonProps } from './Materials/Button';
 export type { Anchor, ISlots as ContextMenuSlots, IProps as ContextMenuProps } from './Materials/ContextMenu';
-export type * from './Materials/DataTable';
-export type * from './Materials/TreeView';
-export type * from './Materials/Headless/Combobox';
-export type * from './Materials/Form/Select';
-export type * from './Materials/Form/Autocomplete';
-export type * from './Materials/Form/Input';
-export type * from './Materials/Form/Checkbox';
-export type * from './Materials/Form/Radio';
-export type * from './Materials/Form/Textarea';
-export type * from './Materials/Form/Toggle';
+export type {
+  FilterFunction, SortFunction, IColumn as DataTableColumnDefinition, Columns as DataTableColumns,
+  Variant as DataTableVariant, IProps as DataTableProps, IState as DataTableState,
+  IColumnSlotProps as DataTableColumnSlotProps, IColumnHeaderSlotProps as DataTableColumnHeaderSlotProps,
+  IActionColumnInnerSlotProps as DataTableActionColumnInnerSlotProps,
+  IActionColumnSlotProps as DataTableActionColumnSlotProps, ISlots as DataTableSlots,
+} from './Materials/DataTable';
+export type { TreeNodeId, TreeNode } from './Materials/TreeView';
+export type {
+  ComboboxOptionValue, ComboboxModelValue, ComboboxOption,
+  IEmits as ComboboxEmits, IProps as ComboboxProps, ISlots as ComboboxSlots,
+} from './Materials/Headless/Combobox';
+export type { IEmits as SelectEmits, IProps as SelectProps, ISlots as SelectSlots } from './Materials/Form/Select';
+export type { IEmits as AutocompleteEmits, IProps as AutocompleteProps, ISlots as AutocompleteSlots } from './Materials/Form/Autocomplete';
+export type { IEmits as InputEmits, IProps as InputProps, TextFieldIconData } from './Materials/Form/Input';
+export type { IEmits as CheckboxEmits, IProps as CheckboxProps, TValue as CheckboxValue, TModelValue as CheckboxModelValue } from './Materials/Form/Checkbox';
+export type { IEmits as RadioEmits, IProps as RadioProps, TModelValue as RadioModelValue } from './Materials/Form/Radio';
+export type { IEmits as TextareaEmits, IProps as TextareaProps } from './Materials/Form/Textarea';
+export type { IEmits as ToggleEmits, IProps as ToggleProps } from './Materials/Form/Toggle';
