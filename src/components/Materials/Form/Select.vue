@@ -58,7 +58,7 @@ const props = withDefaults(defineProps<IProps<TOption> & BaseFieldProps<Combobox
 defineModel<ComboboxModelValue>();
 const search = defineModel<string>('search', { default: '' });
 
-const emit = defineEmits<IEmits & {
+const emit = defineEmits<IEmits<TOption> & {
   'update:modelValue': [value: ComboboxModelValue];
 }>();
 

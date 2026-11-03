@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 @use '~styles/utilities' as *;
 
 .m-contextmenu-item {
@@ -35,7 +37,7 @@
       position: absolute;
       top: calc(50% - 1px);
       right: 15px;
-      background-color: invert(color(grey900));
+      background-color: color.invert(color(grey900));
     }
 
     &::before {

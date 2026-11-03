@@ -1,9 +1,9 @@
 @use 'sass:color';
 
-@use '~styles/utilities' as *;
-@use '~styles/bases/bases' as *;
-@use '~styles/bases/classes' as *;
-@use '~styles/bases/flexy-grid' as *;
+@use './utilities' as *;
+@use './bases/bases' as *;
+@use './bases/classes' as *;
+@use './bases/flexy-grid' as *;
 
 
 #app {

@@ -64,6 +64,14 @@ app.directive('focus', vFocus);
 
 Import `vue-materials/styles` once in your application entry point. It includes the library component styles, base styles, utility classes and bundled font assets.
 
+The Sass utilities are also available as a Sass module:
+
+```scss
+@use 'vue-materials/utilities.scss' as *;
+```
+
+This module exposes the variables, functions and mixins from the library's Sass foundations.
+
 ## Development
 
 ```bash

@@ -20,6 +20,6 @@ export interface ISlots<TOption extends ComboboxOption = ComboboxOption> extends
 
 export interface IProps<TOption extends ComboboxOption = ComboboxOption> extends Omit<ISelectProps<TOption>, 'options' | 'searchable'> {
   // Business logic
-  find: (search: string) => Promise<Array<TOption>>;
+  fetch: (search: string) => Promise<Array<TOption>>;
   preFetch?: boolean;
 }

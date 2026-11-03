@@ -48,7 +48,7 @@ export interface IProps<TOption extends ComboboxOption = ComboboxOption> {
   allowRemoveSelected?: boolean;
 }
 
-export function useCombobox<T extends ComboboxOption>(params: {
+export function useCombobox<T extends ComboboxOption = ComboboxOption>(params: {
   options: Ref<T[]>;
   modelValue: Ref<ComboboxModelValue>;
   search: Ref<string>;
@@ -89,10 +89,10 @@ export function useCombobox<T extends ComboboxOption>(params: {
 
   const isSelected = (value: ComboboxOptionValue) => selectedValues.value.includes(value);
 
-  function select(option: ComboboxOption): {
+  function select(option: T): {
     modelValue: ComboboxModelValue;
-    removed?: ComboboxOption;
-    added?: ComboboxOption;
+    removed?: T;
+    added?: T;
   } {
     if (multiple.value) {
       const current = selectedValues.value;

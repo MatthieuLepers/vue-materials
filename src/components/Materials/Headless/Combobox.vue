@@ -244,7 +244,7 @@ const root = ref<HTMLElement | null>(null);
 const dropdown = ref<HTMLElement | null>(null);
 const { t } = useI18n();
 
-const emit = defineEmits<IEmits>();
+const emit = defineEmits<IEmits<TOption>>();
 
 const { focused, onFocus, onBlur } = useFieldState({
   focus: (v) => emit('focus', v),

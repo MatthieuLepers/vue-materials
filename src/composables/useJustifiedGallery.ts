@@ -2,21 +2,24 @@ import { computed, type Ref } from 'vue';
 
 import { useElementSize } from '@/composables/useElementSize';
 
-export type AspectRatioFile = {
+export type TFileEntity = {
+  id: number;
   aspectRatio: number;
+  width: number;
+  height: number;
 };
 
-export type JustifiedGalleryItem<TFile extends AspectRatioFile = AspectRatioFile> = {
+export type JustifiedGalleryItem<TFile extends TFileEntity = TFileEntity> = {
   file: TFile;
   width: number;
   height: number;
 };
 
-export type JustifiedGalleryRow<TFile extends AspectRatioFile = AspectRatioFile> = {
+export type JustifiedGalleryRow<TFile extends TFileEntity = TFileEntity> = {
   items: Array<JustifiedGalleryItem<TFile>>;
 };
 
-export const useJustifiedGallery = <TFile extends AspectRatioFile>(
+export const useJustifiedGallery = <TFile extends TFileEntity>(
   files: Ref<Array<TFile>>,
   container: Ref<HTMLElement | null>,
   targetRowHeight: number = 250,
