@@ -1,0 +1,15 @@
+@use '~styles/utilities' as *;
+
+.m-form-field-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+
+  &--row {
+    flex-direction: row;
+  }
+
+  &--end {
+    justify-content: flex-end;
+  }
+}

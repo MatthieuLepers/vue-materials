@@ -1,0 +1,192 @@
+@use '~styles/utilities' as *;
+
+@mixin make-reverse($padding, $afterTop, $afterRight, $shadowTop) {
+  &.m-form-checkbox--reverse {
+    &.m-form-checkbox {
+      @include make-accessibility-shadow() {
+        top: calc(50% - $shadowTop);
+        left: auto;
+        right: 0;
+      }
+
+      input {
+        &+label {
+          padding-left: 0;
+          padding-right: rem($padding);
+
+          &::before {
+            left: auto;
+            right: 0;
+          }
+
+          &::after {
+            top: calc(50% - $afterTop);
+            left: auto;
+            right: $afterRight;
+          }
+        }
+      }
+    }
+  }
+}
+
+.m-form-checkbox {
+  position: relative;
+
+  input {
+    position: absolute;
+    top: calc(50% - 6.5px);
+    left: 2px;
+    width: 0;
+    height: 0;
+    z-index: -1;
+    margin: 0;
+
+    &+label {
+      @include set-font-scale('xs');
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      color: color(grey000);
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        background-color: color(grey600);
+        border-radius: 4px;
+      }
+
+      &::after {
+        @include transition(opacity .2s ease-in-out);
+        content: '';
+        display: block;
+        border-top: none;
+        border-right: none;
+        transform: rotate(-45deg);
+        position: absolute;
+        opacity: 0;
+      }
+    }
+
+    &:checked+label {
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+
+  &--default {
+    &.m-form-checkbox {
+      @include make-accessibility-shadow() {
+        width: 32px;
+        height: 32px;
+        border-radius: 4px;
+        top: calc(50% - 16px);
+        left: 0;
+      }
+    }
+
+    input {
+      &+label {
+        padding-left: rem(40px);
+        min-height: 32px;
+
+        &::before {
+          width: 32px;
+          height: 32px;
+          top: calc(50% - 16px);
+        }
+
+        &::after {
+          width: 12px;
+          height: 6px;
+          border-bottom: 2px solid color(grey000);
+          border-left: 2px solid color(grey000);
+          top: calc(50% - 6px);
+          left: 9px;
+        }
+      }
+    }
+
+    @include make-reverse(40px, 6px, 9px, 16px);
+  }
+
+  &--small {
+    &.m-form-checkbox {
+      @include make-accessibility-shadow() {
+        width: 24px;
+        height: 24px;
+        border-radius: 4px;
+        top: calc(50% - 12px);
+        left: 0;
+      }
+    }
+
+    input {
+      &+label {
+        padding-left: rem(32px);
+        min-height: 24px;
+
+        &::before {
+          width: 24px;
+          height: 24px;
+          top: calc(50% - 12px);
+        }
+
+        &::after {
+          width: 8px;
+          height: 4px;
+          border-bottom: 2px solid color(grey000);
+          border-left: 2px solid color(grey000);
+          top: calc(50% - 4px);
+          left: 7px;
+        }
+      }
+    }
+
+    @include make-reverse(32px, 4px, 7px, 12px);
+  }
+
+  &--x-small {
+    &.m-form-checkbox {
+      @include make-accessibility-shadow() {
+        width: 18px;
+        height: 18px;
+        border-radius: 9px;
+        top: calc(50% - 9px);
+        left: 0;
+      }
+    }
+
+    input {
+      &+label {
+        padding-left: rem(26px);
+        min-height: 18px;
+
+        &::before {
+          width: 18px;
+          height: 18px;
+          top: calc(50% - 9px);
+        }
+
+        &::after {
+          width: 8px;
+          height: 3px;
+          border-bottom: 2px solid color(grey000);
+          border-left: 2px solid color(grey000);
+          top: calc(50% - 4px);
+          left: 4px;
+        }
+      }
+
+      &:checked+label {
+        &::before {
+          background-color: color(secondary300);
+        }
+      }
+    }
+
+    @include make-reverse(26px, 4px, 4px, 9px);
+  }
+}

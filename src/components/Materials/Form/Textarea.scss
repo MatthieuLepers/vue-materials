@@ -1,0 +1,389 @@
+@use '~styles/utilities' as *;
+
+.m-form-textarea {
+  &--box {
+    &.m-form-textarea--adornment {
+      .m-form-textarea__container {
+        padding-right: rem(56px);
+      }
+    }
+
+    &.m-form-textarea--invalid:not(&.m-form-textarea--disabled) {
+      .m-form-textarea__label {
+        color: color(danger300);
+      }
+
+      .m-form-textarea__container {
+        border-bottom-color: color(danger300);
+      }
+    }
+
+    &.m-form-textarea--focus{
+      .m-form-textarea__label {
+        color: color(secondary300);
+      }
+
+      .m-form-textarea__container {
+        border-bottom-color: color(secondary300);
+      }
+    }
+
+    &.m-form-textarea--valid:not(&.m-form-textarea--disabled) {
+      .m-form-textarea__label {
+        color: color(success300);
+      }
+
+      .m-form-textarea__container {
+        border-bottom-color: color(success300);
+      }
+    }
+
+    &.m-form-textarea--empty:not(.m-form-textarea--focus) {
+      .m-form-textarea__label {
+        @include set-font-scale('s');
+        transform: translateY(26px);
+        padding: rem(12px) 0;
+        background-color: inherit;
+      }
+    }
+
+    &.m-form-textarea--required:not(&.m-form-textarea--disabled) {
+      .m-form-textarea__label::after {
+        content: '*';
+        @include set-font-scale('xs');
+        color: color(danger300);
+        margin-left: rem(4px);
+      }
+    }
+
+    &.m-form-textarea--disabled,
+    &.m-form-textarea--readonly {
+      .m-form-textarea__label,
+      .m-form-textarea__adornment {
+        color: color(grey500);
+      }
+
+      .m-form-textarea__container {
+        border-bottom-color: color(grey500);
+        background-color: color(grey700);
+      }
+    }
+
+    .m-form-textarea {
+      &__container {
+        @include transition(border-color .2s ease);
+        display: flex;
+        flex-direction: column-reverse;
+        position: relative;
+        background-color: color(grey700);
+        padding: rem(8px) rem(12px);
+        border-bottom: 2px solid color(grey100);
+        border-radius: 2px 2px 0 0;
+        min-height: 56px;
+        overflow: hidden;
+      }
+
+      &__label {
+        @include set-font-scale('xs');
+        @include transition(all .2s ease);
+        color: color(grey000);
+        width: 100%;
+      }
+
+      &__adornment {
+        @include set-font-scale('m');
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 56px;
+        height: 56px;
+        color: color(grey000);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 2px;
+
+        &--clickable {
+          @include make-accessibility-background;
+        }
+      }
+    }
+
+    textarea {
+      @include set-font-scale('m');
+      padding: rem(8px);
+      margin-top: 2px;
+      background-color: inherit;
+      box-shadow: none;
+      outline: none;
+      color: color(grey000);
+    }
+  }
+
+  &--inline {
+    position: relative;
+
+    .m-form-textarea__container {
+      flex-direction: row-reverse;
+      position: relative;
+      display: flex;
+      gap: rem(16px);
+    }
+
+    &.m-form-textarea {
+      @include make-accessibility-shadow {
+        height: 100%;
+        width: 66.666%;
+        right: 0;
+        left: auto;
+        top: 0px;
+        bottom: auto;
+        border-radius: 16px;
+      }
+    }
+
+    &.m-form-textarea--noLabel {
+      @include make-accessibility-shadow {
+        height: 100%;
+        top: 0;
+        bottom: auto;
+        border-radius: 16px;
+      }
+    }
+
+    &.m-form-textarea--focus textarea {
+      border-color: color(secondary300);
+
+      &+.m-form-textarea__label {
+        color: color(secondary300);
+      }
+    }
+
+    &.m-form-textarea--valid:not(&.m-form-textarea--disabled) textarea {
+      border-color: color(success300);
+
+      &+.m-form-textarea__label {
+        color: color(success300);
+      }
+    }
+
+    &.m-form-textarea--invalid:not(&.m-form-textarea--disabled) textarea {
+      border-color: color(danger300);
+
+      &+.m-form-textarea__label {
+        color: color(danger300);
+      }
+    }
+
+    &.m-form-textarea--focus textarea,
+    &.m-form-textarea:hover textarea,
+    &.m-form-textarea--focus textarea:focus,
+    &.m-form-textarea:hover textarea:focus {
+      box-shadow: 0 0 8px rgba(color(grey999), .5);
+    }
+
+    &.m-form-textarea--adornment textarea {
+      padding: rem(8px) rem(40px) rem(8px) rem(8px);
+    }
+
+    &.m-form-textarea--required .m-form-textarea__label::after {
+      content: '*';
+      color: color(danger300);
+      margin-left: rem(2px);
+    }
+
+    &.m-form-textarea--disabled textarea:disabled {
+      color: color(grey500);
+    }
+
+    textarea {
+      @include set-font-scale('xs');
+      background-color: color(grey700);
+      min-height: 32px;
+      width: 100%;
+      border-radius: 16px;
+      border: solid 1px color(grey700);
+      color: color(grey000);
+      padding: rem(8px);
+      outline: none;
+      flex: 0 0 66.666%;
+
+      @include placeholder {
+        color: color(grey000);
+        opacity: .5;
+      }
+    }
+
+    .m-form-textarea {
+      &__label {
+        @include set-font-scale('xs');
+        color: color(grey999);
+        flex: 0 0 33.333%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+
+      &__adornment {
+        @include set-font-scale('xs');
+        position: absolute;
+        bottom: 4px;
+        right: 4px;
+        width: 24px;
+        height: 24px;
+        background-color: color(grey700);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: color(grey000);
+
+        @include make-accessibility-shadow {
+          border-radius: 16px;
+        };
+
+        &--clickable {
+          cursor: pointer;
+        }
+
+        &:not(.m-form-textarea__adornment--clickable) {
+          pointer-events: none;
+        }
+
+        &:focus,
+        &:hover {
+          background-color: color(grey600);
+        }
+      }
+    }
+  }
+
+  &--default {
+    position: relative;
+
+    &.m-form-textarea {
+      @include make-accessibility-shadow {
+        height: 100%;
+        top: 20px;
+        bottom: auto;
+        border-radius: 16px;
+      }
+    }
+
+    &.m-form-textarea--noLabel {
+      @include make-accessibility-shadow {
+        top: 0;
+        bottom: auto;
+        border-radius: 16px;
+      }
+    }
+
+    &.m-form-textarea--focus textarea {
+      border-color: color(secondary300);
+
+      &+.m-form-textarea__label {
+        color: color(secondary300);
+      }
+    }
+
+    &.m-form-textarea--valid:not(&.m-form-textarea--disabled) textarea {
+      border-color: color(success300);
+
+      &+.m-form-textarea__label {
+        color: color(success300);
+      }
+    }
+
+    &.m-form-textarea--invalid:not(&.m-form-textarea--disabled) textarea {
+      border-color: color(danger300);
+
+      &+.m-form-textarea__label {
+        color: color(danger300);
+      }
+    }
+
+    &.m-form-textarea--focus textarea,
+    &.m-form-textarea:hover textarea,
+    &.m-form-textarea--focus textarea:focus,
+    &.m-form-textarea:hover textarea:focus {
+      box-shadow: 0 0 8px rgba(color(grey999), .5);
+    }
+
+    &.m-form-textarea--adornment textarea {
+      padding: rem(8px) rem(40px) rem(8px) rem(8px);
+    }
+
+    &.m-form-textarea--required .m-form-textarea__label::after {
+      content: '*';
+      color: color(danger300);
+      margin-left: rem(2px);
+    }
+
+    &.m-form-textarea--disabled textarea:disabled {
+      color: color(grey500);
+    }
+
+    .m-form-textarea__container {
+      flex-direction: column-reverse;
+      display: flex;
+      position: relative;
+    }
+
+    textarea {
+      @include set-font-scale('xs');
+      background-color: color(grey700);
+      min-height: 32px;
+      width: 100%;
+      border-radius: 16px;
+      border: solid 1px color(grey700);
+      color: color(grey000);
+      padding: rem(8px);
+      outline: none;
+
+      @include placeholder {
+        color: color(grey000);
+        opacity: .5;
+      }
+    }
+
+    .m-form-textarea {
+      &__label {
+        @include set-font-scale('xs');
+        margin-bottom: rem(4px);
+        color: color(grey000);
+      }
+
+      &__adornment {
+        @include set-font-scale('xs');
+        position: absolute;
+        bottom: 4px;
+        right: 4px;
+        width: 24px;
+        height: 24px;
+        background-color: color(grey600);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: color(grey000);
+
+        @include make-accessibility-shadow {
+          border-radius: 16px;
+        };
+
+        &--clickable {
+          cursor: pointer;
+        }
+
+        &:not(.m-form-textarea__adornment--clickable) {
+          pointer-events: none;
+        }
+
+        &:focus,
+        &:hover {
+          background-color: color(grey500);
+        }
+      }
+    }
+  }
+}

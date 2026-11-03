@@ -1,0 +1,33 @@
+@use 'sass:list';
+
+@use './fonts' as fonts;
+@use './icons' as icons;
+
+body {
+  @include fonts.font-family('Open Sans');
+  font-size: 16px;
+}
+
+[class^="icon-"],
+[class*=" icon-"],
+.icon {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ICONS */
+@each $iconName, $iconData in icons.$icons {
+  .icon-#{$iconName}:before {
+    content: list.nth($iconData, 2);
+    font-family: list.nth($iconData, 1) !important;
+  }
+}

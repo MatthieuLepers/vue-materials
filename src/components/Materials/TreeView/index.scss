@@ -1,0 +1,202 @@
+@use '~styles/utilities' as *;
+
+.m-tree-view {
+  @include set-font-scale('s');
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: rem(4px);
+  color: color(grey000);
+}
+
+.m-tree-node {
+  position: relative;
+
+  &--add {
+    .m-tree-node__item {
+      width: 100%;
+      height: 32px;
+      display: flex;
+      gap: rem(4px);
+      align-items: center;
+      border-radius: 8px;
+
+      span {
+        height: 32px;
+        display: flex;
+        align-items: center;
+        background-color: color(grey700);
+        border: 1px solid color(grey800);
+        border-radius: 8px;
+
+        &.icon-plus {
+          width: 32px;
+          justify-content: center;
+          background-color: color(secondary300);
+
+          &+span {
+            padding: 0 rem(8px);
+            flex: 1;
+            min-width: 256px;
+          }
+        }
+      }
+    }
+  }
+
+  &--expandable {
+    &>.m-tree-node__item {
+      position: relative;
+
+      @include make-accessibility-shadow {
+        width: calc(100% - 36px);
+        left: 36px;
+        border-radius: 8px;
+      }
+    }
+  }
+
+  &:not(.m-tree-node--add):not(.m-tree-node--root) {
+    &>.m-tree-node__item {
+      &::before {
+        content: '';
+        width: 16px;
+        height: 16px;
+        border-left: 1px solid color(grey700);
+        border-bottom: 1px solid color(grey700);
+        position: absolute;
+        right: calc(100% + 4px);
+        bottom: 16px;
+      }
+
+      &.m-tree-node__item--thumb::before {
+        height: 36px;
+      }
+    }
+
+    &.m-tree-node--addable > .m-tree-node__item {
+      &.m-tree-node__item--thumb::before {
+        height: 72px;
+      }
+    }
+  }
+
+  &__item {
+    display: flex;
+    gap: rem(4px);
+    align-items: center;
+    width: 100%;
+    position: relative;
+
+    @include make-accessibility-shadow {
+      border-radius: 8px;
+    }
+  }
+
+  &__toggle {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    background-color: color(grey700);
+    border: 1px solid color(grey800);
+    position: relative;
+
+    @include make-accessibility-shadow {
+      border-radius: 8px;
+    }
+  }
+
+  &__body {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    min-height: 32px;
+  }
+
+  &--root {
+    & > .m-tree-node__item > .m-tree-node__body {
+      border-radius: 8px;
+      background-color: color(grey700);
+      border: 1px solid color(grey800);
+      padding: 0 rem(8px);
+    }
+  }
+
+  &__children {
+    list-style: none;
+    padding: 0;
+    margin: rem(4px) 0 0 rem(36px);
+    display: flex;
+    flex-direction: column;
+    gap: rem(4px);
+    position: relative;
+  }
+
+  &__form {
+    display: flex;
+    gap: rem(4px);
+  }
+
+  &__close {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: color(danger300);
+    border: 1px solid color(danger300);
+    color: color(grey000);
+    border-radius: 8px;
+    position: relative;
+
+    @include make-accessibility-shadow(color(danger300)) {
+      border-radius: 8px;
+    }
+  }
+
+  &__submit {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: color(success300);
+    border: 1px solid color(success300);
+    color: color(grey000);
+    border-radius: 8px;
+    position: relative;
+
+    @include make-accessibility-shadow(color(success300)) {
+      border-radius: 8px;
+    }
+  }
+
+  &__input {
+    height: 32px;
+    width: calc(100% - 72px);
+    padding: 0 rem(8px);
+    background-color: color(grey700);
+    border: 1px solid color(grey800);
+    color: color(grey000);
+    border-radius: 8px;
+    position: relative;
+
+    @include transition(border-color .2s ease);
+
+    @include placeholder {
+      color: color(grey000);
+      font-weight: 400;
+      opacity: .5;
+    }
+
+    &:focus,
+    &:active {
+      border-color: color(secondary300);
+    }
+  }
+}

@@ -1,0 +1,185 @@
+@use 'sass:color';
+
+@use '~styles/utilities' as *;
+
+@mixin set-button-color($background, $text, $strokeText) {
+  background-color: $background;
+  color: $text;
+
+  .m-button__icon {
+    color: $text;
+  }
+
+  &:not(.m-button--disabled) {
+    &:focus,
+    &:hover {
+      box-shadow: 0 0 10px $background;
+    }
+  }
+
+  &.m-button--stroke {
+    background-color: transparent;
+    border: 1px solid $background;
+    color: $strokeText;
+
+    .m-button__icon {
+      color: $background;
+    }
+
+    &:focus,
+    &:hover {
+      box-shadow: 0 0 10px $background;
+    }
+  }
+}
+
+.m-button {
+  min-height: 32px;
+  border-radius: 16px;
+  padding: 0 rem(8px);
+  text-align: center;
+  background-color: color(grey800);
+  color: color(grey000);
+  position: relative;
+
+  &:focus,
+  &:hover {
+    outline: none;
+  }
+
+  &--squared {
+    border-radius: 0;
+  }
+
+  &--iconOnly {
+    padding: 0 !important;
+    min-width: 32px;
+  }
+
+  &--responsive {
+    padding: 0;
+    max-width: 32px;
+
+    span:not(.m-button__icon) {
+      display: none;
+
+      @include set-from-screen(s) {
+        display: inline-block;
+      }
+    }
+
+    @include set-from-screen(s) {
+      max-width: none;
+      padding: 0 rem(8px);
+    }
+  }
+
+  &--iconed {
+    position: relative;
+
+    .m-button__icon {
+      font-size: rem(12px);
+      position: absolute;
+      top: 4px;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: color(grey700);
+      border-radius: 50%;
+    }
+
+    &:not(.m-button--disabled) {
+      &:focus .m-button__icon,
+      &:hover .m-button__icon {
+        background-color: color(grey600);
+      }
+    }
+
+    &.m-button--iconed-left {
+      padding-left: rem(32px);
+
+      .m-button__icon {
+        left: 4px;
+      }
+    }
+
+    &.m-button--iconed-right {
+      padding-right: rem(32px);
+
+      .m-button__icon {
+        right: 4px;
+      }
+    }
+  }
+
+  &--success {
+    @include set-button-color(color(success300), color(grey000), color(grey000));
+    @include make-accessibility-shadow(color(success300));
+
+    &:focus,
+    &:hover {
+      background-color: color.adjust(color(success300), $lightness: 10%);
+    }
+  }
+
+  &--primary {
+    @include set-button-color(color(grey900), color(grey000), color(grey000));
+    @include make-accessibility-shadow(color(secondary300));
+
+    &:focus,
+    &:hover {
+      background-color: color.adjust(color(grey900), $lightness: 10%);
+    }
+  }
+
+  &--secondary  {
+    @include set-button-color(color(secondary300), color(grey000), color(grey000));
+    @include make-accessibility-shadow(color(secondary300));
+
+    &:focus,
+    &:hover {
+      background-color: color.adjust(color(secondary300), $lightness: 10%);
+    }
+  }
+
+  &--warning {
+    @include set-button-color(color(warning300), color(grey000), color(grey000));
+    @include make-accessibility-shadow(color(warning300));
+
+    &:focus,
+    &:hover {
+      background-color: color.adjust(color(warning300), $lightness: 10%);
+    }
+  }
+
+  &--danger {
+    @include set-button-color(color(danger300), color(grey000), color(grey000));
+    @include make-accessibility-shadow(color(danger300));
+
+    &:focus,
+    &:hover {
+      background-color: color.adjust(color(danger300), $lightness: 10%);
+    }
+  }
+
+  &--cancel {
+    @include set-button-color(color(grey600), color(grey000), color(grey000));
+    @include make-accessibility-shadow(color(secondary300));
+
+    &:focus,
+    &:hover {
+      background-color: color.adjust(color(grey600), $lightness: 10%);
+    }
+  }
+
+  &--disabled {
+    @include set-button-color(color(grey600), color(grey000), color(grey000));
+
+    &:focus,
+    &:hover {
+      background-color: color(grey600);
+    }
+  }
+}

@@ -1,0 +1,54 @@
+@use '~styles/utilities' as *;
+
+.m-form-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: rem(4px);
+  padding: rem(8px);
+  margin: rem(8px) 0 0 0;
+  list-style: none;
+  background-color: color(grey800);
+  border-radius: 12px;
+
+  &:empty {
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+  }
+
+  &__label {
+    @include set-font-scale('xs');
+    margin-bottom: rem(4px);
+    color: color(grey000);
+    display: block;
+  }
+
+  &__item {
+    @include set-font-scale('s');
+    color: color(grey000);
+    background-color: color(grey700);
+    box-shadow: 0 0 2px color(grey500);
+    padding: rem(8px);
+    height: 32px;
+    display: flex;
+    gap: rem(8px);
+    align-items: center;
+    position: relative;
+    border-radius: 8px;
+  }
+
+  &__remove {
+    font-size: rem(10px);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: color(danger300);
+    color: color(grey000);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: -4px;
+
+    @include make-accessibility-shadow;
+  }
+}

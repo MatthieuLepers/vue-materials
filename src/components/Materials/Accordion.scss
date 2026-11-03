@@ -1,0 +1,39 @@
+@use '~styles/utilities' as *;
+
+.m-accordion {
+  background-color: color(secondary300);
+  border-radius: 32px;
+
+  &:not(:last-of-type) {
+    margin-bottom: rem(16px);
+  }
+
+  &__button {
+    @include set-font-scale('l');
+    font-weight: 500;
+    padding: rem(24px) rem(24px);
+    margin: 0;
+
+    &:before {
+      @include icon('arrow-right');
+      display: inline-block;
+      margin-right: 8px;
+      font-size: rem(16px);
+    }
+
+    &--open {
+      &:before {
+        @include icon('arrow-down');
+      }
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: rem(10px);
+    list-style: none;
+    padding: 0 rem(16px) rem(16px) rem(16px);
+    margin: 0;
+  }
+}

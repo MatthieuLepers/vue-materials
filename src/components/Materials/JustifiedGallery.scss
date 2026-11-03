@@ -1,0 +1,42 @@
+@use '~styles/utilities' as *;
+
+.justified-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: rem(8px);
+
+  &__row {
+    display: flex;
+    gap: rem(8px);
+  }
+
+  &__item {
+    position: relative;
+    overflow: hidden;
+  }
+
+  &__skeleton {
+    position: absolute;
+    border-radius: 12px;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(color(grey000), 0.03) 0%,
+      rgba(color(grey000), 0.08) 50%,
+      rgba(color(grey000), 0.03) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+    pointer-events: none;
+    backdrop-filter: blur(2px);
+
+    &~* {
+      opacity: 0;
+      transition: opacity .25s ease;
+    }
+
+    &--loaded~*{
+      opacity: 1;
+    }
+  }
+}

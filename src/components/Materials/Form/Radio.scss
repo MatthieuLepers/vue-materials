@@ -1,0 +1,103 @@
+@use '~styles/utilities' as *;
+
+.m-form-radio {
+  position: relative;
+
+  &--default {
+    @include make-accessibility-shadow() {
+      width: 32px;
+      height: 32px;
+      top: calc(50% - 16px);
+      left: 0;
+    }
+
+    input {
+      &+label {
+        padding-left: rem(40px);
+        min-height: 32px;
+
+        &::before {
+          width: 32px;
+          height: 32px;
+          top: calc(50% - 16px);
+          left: 0;
+          border-radius: 16px;
+        }
+
+        &::after {
+          width: 12px;
+          height: 12px;
+          top: calc(50% - 6px);
+          left: 10px;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+
+  &--tiny {
+    @include make-accessibility-shadow() {
+      width: 16px;
+      height: 16px;
+      top: calc(50% - 8px);
+      left: 0;
+    }
+
+    input {
+      &+label {
+        padding-left: rem(20px);
+        min-height: 16px;
+
+        &::before {
+          width: 16px;
+          height: 16px;
+          top: calc(50% - 8px);
+          left: 0;
+          border-radius: 8px;
+        }
+
+        &::after {
+          width: 6px;
+          height: 6px;
+          top: calc(50% - 3px);
+          left: 5px;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+
+  input {
+    position: absolute;
+    top: calc(50% - 5px);
+    left: 0;
+    z-index: -1;
+
+    &+label {
+      @include set-font-scale('xs');
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      color: color(grey000);
+
+      &::before {
+        content: '';
+        position: absolute;
+        background-color: color(grey600);
+      }
+
+      &::after {
+        @include transition(opacity .2s ease-in-out);
+        content: '';
+        position: absolute;
+        opacity: 0;
+        background-color: color(grey000);
+      }
+    }
+
+    &:checked+label::after {
+      opacity: 1;
+    }
+  }
+}
+

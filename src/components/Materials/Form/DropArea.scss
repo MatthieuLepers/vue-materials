@@ -1,0 +1,38 @@
+@use '~styles/utilities' as *;
+
+.m-form-droparea {
+  width: 100%;
+  height: 100%;
+  user-select: none;
+
+  &__button {
+    @include transition(border-color 200ms ease);
+    width: 100%;
+    height: 100%;
+    border: 2px dashed color(grey700);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: rem(8px);
+    padding: rem(16px);
+
+    [class^="icon"] {
+      font-size: rem(24px);
+    }
+
+    &--hover {
+      opacity: 1 !important;
+    }
+
+    &:focus,
+    &:hover {
+      border: 2px dashed color(secondary300);
+    }
+  }
+
+  &__input {
+    display: none;
+  }
+}

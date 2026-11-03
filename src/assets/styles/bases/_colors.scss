@@ -1,0 +1,24 @@
+@use 'sass:map';
+
+$colors: (
+  grey000      : #f1f1f1,
+  grey100      : #ebebeb,
+  grey200      : #c4c4c4,
+  grey500      : #8c868a,
+  grey600      : #6d6d6d,
+  grey700      : #282A2C,
+  grey800      : #1E1F20,
+  grey900      : #131314,
+  grey999      : #000,
+  secondary100 : #00f7ff,
+  secondary200 : #0099ff,
+  secondary300 : #004A77,
+  success300   : #22d397,
+  warning100   : #f0f042,
+  warning300   : #d6914e,
+  danger300    : #f63232,
+);
+
+@function color($colorName) {
+  @return map.get($colors, $colorName);
+}

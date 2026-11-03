@@ -1,0 +1,14 @@
+@use '~styles/utilities' as *;
+
+.m-datatable-bodyrow {
+  &__container {
+    display: flex;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .m-datatable-column {
+    @include set-font-scale('s');
+  }
+}

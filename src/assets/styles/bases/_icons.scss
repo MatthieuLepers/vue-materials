@@ -1,0 +1,73 @@
+@use 'sass:list';
+@use 'sass:map';
+
+@font-face {
+  font-family: 'icomoon';
+  src: url('~fonts/icomoon/icomoon.eot?ws6lg2');
+  src: url('~fonts/icomoon/icomoon.eot?ws6lg2#iefix') format('embedded-opentype'),
+       url('~fonts/icomoon/icomoon.ttf?ws6lg2') format('truetype'),
+       url('~fonts/icomoon/icomoon.woff?ws6lg2') format('woff'),
+       url('~fonts/icomoon/icomoon.svg?ws6lg2#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+$icons: (
+  arrow-up    : ('icomoon', '\e900'),
+  arrow-down  : ('icomoon', '\e901'),
+  arrow-left  : ('icomoon', '\e902'),
+  arrow-right : ('icomoon', '\e903'),
+  close       : ('icomoon', '\e904'),
+  check       : ('icomoon', '\e905'),
+  plus        : ('icomoon', '\e906'),
+  minus       : ('icomoon', '\e907'),
+  help        : ('icomoon', '\e908'),
+  eye         : ('icomoon', '\e909'),
+  eye-slash   : ('icomoon', '\e90a'),
+  edit        : ('icomoon', '\e90b'),
+  reload      : ('icomoon', '\e90c'),
+  delete      : ('icomoon', '\e90d'),
+  import      : ('icomoon', '\e90e'),
+  export      : ('icomoon', '\e90f'),
+  search      : ('icomoon', '\e910'),
+  tags        : ('icomoon', '\e911'),
+  star-empty  : ('icomoon', '\e912'),
+  star-full   : ('icomoon', '\e913'),
+  image       : ('icomoon', '\e914'),
+  album       : ('icomoon', '\e915'),
+  info        : ('icomoon', '\e916'),
+  warning     : ('icomoon', '\e917'),
+  duplicate   : ('icomoon', '\e918'),
+  calendar    : ('icomoon', '\e919'),
+  save        : ('icomoon', '\e91a'),
+  loader      : ('icomoon', '\e91b'),
+  settings    : ('icomoon', '\e91c'),
+  attachment  : ('icomoon', '\e91d'),
+  url         : ('icomoon', '\e91e'),
+  lock        : ('icomoon', '\e91f'),
+  gear        : ('icomoon', '\e920'),
+  play2       : ('icomoon', '\e921'),
+  bell        : ('icomoon', '\e922'),
+  menu        : ('icomoon', '\e923'),
+  menu2       : ('icomoon', '\e924'),
+  folder      : ('icomoon', '\e925'),
+  user        : ('icomoon', '\e926'),
+  tv          : ('icomoon', '\e927'),
+);
+
+@mixin icon($iconName) {
+  content: list.nth(map.get($icons, $iconName), 2);
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: #{list.nth(map.get($icons, $iconName), 1)} !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

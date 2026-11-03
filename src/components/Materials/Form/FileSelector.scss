@@ -1,0 +1,11 @@
+@use '~styles/utilities' as *;
+
+.m-form-file-selector {
+  &__input {
+    display: none;
+  }
+
+  &__button {
+    width: 100%;
+  }
+}
