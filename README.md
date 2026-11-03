@@ -7,7 +7,7 @@ A collection of Vue 3 components, composables, directives, plugins and utilities
 This repository is intentionally not published to the npm registry. Install it directly from GitHub:
 
 ```bash
-npm install github:MatthieuLepers/vue-materials#feat/package-library
+npm install github:MatthieuLepers/vue-materials#main
 ```
 
 Vue 3.5 or newer is required and must be provided by the consuming application.
