@@ -59,7 +59,9 @@
     "build": "npm run type-check && npm run build:types && vite build",
     "prepare": "npm run build",
     "dev": "vite",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@vuelidate/core": "^2.0.3",
@@ -71,6 +73,7 @@
     "vue": "^3.5.35"
   },
   "devDependencies": {
+    "@storybook/vue3-vite": "^10.6.2",
     "@tsconfig/node22": "^22.0.0",
     "@types/node": "^22.9.0",
     "@typescript-eslint/eslint-plugin": "^8.58.0",
@@ -86,10 +89,12 @@
     "eslint-plugin-unused-imports": "^4.4.1",
     "eslint-plugin-vue": "^9.33.0",
     "sass": "^1.99.0",
+    "storybook": "^10.6.2",
     "typescript": "^6.0.2",
     "typescript-eslint": "^8.58.0",
     "vite": "^8.0.16",
     "vue": "^3.5.35",
+    "vue-component-meta": "^3.3.9",
     "vue-tsc": "^3.2.6"
   },
   "overrides": {
