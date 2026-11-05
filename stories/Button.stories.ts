@@ -4,11 +4,6 @@ import MaterialButton from '@/components/Materials/Button/index.vue';
 
 import type { IProps, Modifiers } from '@/components/Materials/Button';
 
-type StoryArgs = IProps & {
-  iconSlot?: string;
-  modifierSelection?: Modifiers[];
-};
-
 const modifierOptions: Modifiers[] = [
   'primary',
   'secondary',
@@ -33,48 +28,58 @@ const meta = {
       control: 'radio',
       options: [false, true, 'icon-check'],
       description: 'false: no icon; true: use the icon slot; string: use the provided CSS icon class.',
+      table: { category: 'Props' },
     },
-    iconSide: { control: 'inline-radio', options: ['left', 'right'] },
+    iconSide: {
+      control: 'inline-radio',
+      options: ['left', 'right'],
+      table: { category: 'Props' },
+    },
     modifiers: {
       control: false,
-      description: 'Visual modifiers passed to the component as Partial<Record<Modifiers, boolean>>.',
-    },
-    modifierSelection: {
-      control: { type: 'check' },
-      options: modifierOptions,
-      description: 'Select the visual modifiers to apply. Converted to the component modifiers object.',
-      table: { category: 'controls' },
-    },
-    iconSlot: {
-      control: 'text',
-      description: 'Content of the icon slot. Only available when icon is true.',
-      table: { category: 'slots' },
-      if: { arg: 'icon', eq: true },
+      description: 'Visual modifiers applied to the component.',
+      table: { category: 'Props' },
     },
   },
-} satisfies Meta<StoryArgs>;
+  parameters: {
+    vueMaterials: {
+      controls: {
+        modifiers: {
+          type: 'checkbox-group',
+          label: 'Modifiers',
+          options: modifierOptions,
+        },
+      },
+      api: {
+        props: {
+          icon: 'false disables the icon; true renders the icon slot; a string is used as a CSS icon class.',
+          iconSide: 'Position of the icon.',
+          modifiers: 'Partial<Record<Modifiers, boolean>> applied to the button.',
+        },
+        slots: {
+          default: 'Content displayed inside the button.',
+          icon: 'Custom content displayed in the icon container when the icon prop is true.',
+        },
+      },
+    },
+  },
+} satisfies Meta<typeof MaterialButton>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const renderButton = (args: StoryArgs) => ({
+const renderButton = (args: IProps) => ({
   components: { MaterialButton },
-  setup: () => ({
-    args,
-    normalizedModifiers: () =>
-      Object.fromEntries(
-        (args.modifierSelection ?? []).map((modifier) => [modifier, true]),
-      ) as Partial<Record<Modifiers, boolean>>,
-  }),
+  setup: () => ({ args }),
   template: `
     <MaterialButton
       :type="args.type"
       :disabled="args.disabled"
       :icon="args.icon"
       :icon-side="args.iconSide"
-      :modifiers="normalizedModifiers()"
+      :modifiers="args.modifiers"
     >
-      <template v-if="args.icon === true" #icon>{{ args.iconSlot || '✓' }}</template>
+      <template v-if="args.icon === true" #icon>✓</template>
       Button
     </MaterialButton>
   `,
@@ -82,43 +87,37 @@ const renderButton = (args: StoryArgs) => ({
 
 export const Default: Story = {
   render: renderButton,
-  args: { icon: false, modifiers: {}, modifierSelection: [] },
+  args: { icon: false, modifiers: {} },
 };
 
 export const Primary: Story = {
   render: renderButton,
-  args: { modifiers: { primary: true }, modifierSelection: ['primary'] },
+  args: { modifiers: { primary: true } },
 };
 
 export const Secondary: Story = {
   render: renderButton,
-  args: { modifiers: { secondary: true }, modifierSelection: ['secondary'] },
+  args: { modifiers: { secondary: true } },
 };
 
 export const Success: Story = {
   render: renderButton,
-  args: { modifiers: { success: true }, modifierSelection: ['success'] },
+  args: { modifiers: { success: true } },
 };
 
 export const Danger: Story = {
   render: renderButton,
-  args: { modifiers: { danger: true }, modifierSelection: ['danger'] },
+  args: { modifiers: { danger: true } },
 };
 
 export const Stroke: Story = {
   render: renderButton,
-  args: {
-    modifiers: { secondary: true, stroke: true },
-    modifierSelection: ['secondary', 'stroke'],
-  },
+  args: { modifiers: { secondary: true, stroke: true } },
 };
 
 export const Squared: Story = {
   render: renderButton,
-  args: {
-    modifiers: { primary: true, squared: true },
-    modifierSelection: ['primary', 'squared'],
-  },
+  args: { modifiers: { primary: true, squared: true } },
 };
 
 export const Disabled: Story = {
@@ -126,7 +125,6 @@ export const Disabled: Story = {
   args: {
     disabled: true,
     modifiers: { primary: true },
-    modifierSelection: ['primary'],
   },
 };
 
@@ -134,9 +132,7 @@ export const WithIconSlot: Story = {
   render: renderButton,
   args: {
     icon: true,
-    iconSlot: '＋',
     modifiers: { primary: true },
-    modifierSelection: ['primary'],
   },
 };
 
@@ -145,6 +141,5 @@ export const WithIconClass: Story = {
   args: {
     icon: 'icon-check',
     modifiers: { primary: true },
-    modifierSelection: ['primary'],
   },
 };
