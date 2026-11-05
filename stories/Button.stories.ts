@@ -34,6 +34,7 @@ const meta = {
     iconSlot: {
       control: 'text',
       description: 'Content of the icon slot. Only available when icon is true.',
+      table: { category: 'Slots' },
       if: { arg: 'icon', eq: true },
     },
     modifiers: {
