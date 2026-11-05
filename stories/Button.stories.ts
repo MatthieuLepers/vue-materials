@@ -22,8 +22,8 @@ const meta = {
   component: MaterialButton,
   tags: ['autodocs'],
   argTypes: {
-    type: { control: 'select', options: ['button', 'submit', 'reset'] },
-    disabled: { control: 'boolean' },
+    type: { control: 'select', options: ['button', 'submit', 'reset'], table: { category: 'Props' } },
+    disabled: { control: 'boolean', table: { category: 'Props' } },
     icon: {
       control: 'radio',
       options: [false, true, 'icon-check'],
@@ -50,7 +50,7 @@ const meta = {
           options: modifierOptions,
         },
       },
-      api: {
+      categories: {
         props: {
           icon: 'false disables the icon; true renders the icon slot; a string is used as a CSS icon class.',
           iconSide: 'Position of the icon.',
