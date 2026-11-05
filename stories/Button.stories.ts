@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
+import { computed } from 'vue';
 
 import Button from '../src/components/Materials/Button/index.vue';
 import type { IProps, Modifiers } from '../src/components/Materials/Button';
@@ -50,8 +51,10 @@ const renderButton = (args: IProps & { iconSlot?: string }) => ({
   components: { Button },
   setup: () => ({
     args,
-    normalizedModifiers: Object.fromEntries(
-      ((args.modifiers as unknown as string[]) ?? []).map((modifier) => [modifier, true]),
+    normalizedModifiers: computed(() =>
+      Object.fromEntries(
+        ((args.modifiers as unknown as string[]) ?? []).map((modifier) => [modifier, true]),
+      ),
     ),
   }),
   template: `
