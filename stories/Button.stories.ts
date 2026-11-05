@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import { computed } from 'vue';
 
-import Button from '../src/components/Materials/Button/index.vue';
-import type { IProps, Modifiers } from '../src/components/Materials/Button';
+import Button from '@/components/Materials/Button/index.vue';
+
+import type { IProps, Modifiers } from '@/components/Materials/Button';
 
 const modifierOptions: Modifiers[] = [
   'primary',
@@ -18,7 +19,7 @@ const modifierOptions: Modifiers[] = [
 ];
 
 const meta = {
-  title: 'Components/Actions/Button',
+  title: 'Components/Button',
   component: Button,
   tags: ['autodocs'],
   argTypes: {
@@ -27,20 +28,19 @@ const meta = {
     icon: {
       control: 'radio',
       options: [false, true, 'icon-check'],
-      description:
-        'false: no icon; true: use the icon slot; string: use the provided CSS icon class.',
+      description: 'false: no icon; true: use the icon slot; string: use the provided CSS icon class.',
     },
     iconSide: { control: 'inline-radio', options: ['left', 'right'] },
-    iconSlot: {
-      control: 'text',
-      description: 'Content of the icon slot. Only available when icon is true.',
-      table: { category: 'Slots' },
-      if: { arg: 'icon', eq: true },
-    },
     modifiers: {
       control: { type: 'check' },
       options: modifierOptions,
       description: 'Select the visual modifiers to apply.',
+    },
+    iconSlot: {
+      control: 'text',
+      description: 'Content of the icon slot. Only available when icon is true.',
+      table: { category: 'slots' },
+      if: { arg: 'icon', eq: true },
     },
   },
 } satisfies Meta<typeof Button>;
