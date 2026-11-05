@@ -16,7 +16,7 @@ interface VueMaterialsParameters {
     label?: string;
     options?: ModifierOption[];
   }>;
-  api?: {
+  categories?: {
     props?: ApiEntries;
     slots?: ApiEntries;
     events?: ApiEntries;
@@ -102,9 +102,9 @@ function VueMaterialsPanel({ active }: { active: boolean }) {
         ? createElement('h2', { style: { margin: '0 0 12px' } }, 'Controls')
         : null,
       ...controls.map(renderControl),
-      renderApiCategory('Props', parameters.api?.props),
-      renderApiCategory('Slots', parameters.api?.slots),
-      renderApiCategory('Events', parameters.api?.events),
+      renderApiCategory('Props', parameters.categories?.props),
+      renderApiCategory('Slots', parameters.categories?.slots),
+      renderApiCategory('Events', parameters.categories?.events),
     ),
   );
 }
