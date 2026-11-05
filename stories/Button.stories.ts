@@ -1,9 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
-import { computed } from 'vue';
 
-import Button from '@/components/Materials/Button/index.vue';
+import MaterialButton from '@/components/Materials/Button/index.vue';
 
 import type { IProps, Modifiers } from '@/components/Materials/Button';
+
+type StoryArgs = IProps & {
+  iconSlot?: string;
+  modifierSelection?: Modifiers[];
+};
 
 const modifierOptions: Modifiers[] = [
   'primary',
@@ -19,8 +23,8 @@ const modifierOptions: Modifiers[] = [
 ];
 
 const meta = {
-  title: 'Components/Button',
-  component: Button,
+  title: 'Components/Material/Button',
+  component: MaterialButton,
   tags: ['autodocs'],
   argTypes: {
     type: { control: 'select', options: ['button', 'submit', 'reset'] },
@@ -32,9 +36,14 @@ const meta = {
     },
     iconSide: { control: 'inline-radio', options: ['left', 'right'] },
     modifiers: {
+      control: false,
+      description: 'Visual modifiers passed to the component as Partial<Record<Modifiers, boolean>>.',
+    },
+    modifierSelection: {
       control: { type: 'check' },
       options: modifierOptions,
-      description: 'Select the visual modifiers to apply.',
+      description: 'Select the visual modifiers to apply. Converted to the component modifiers object.',
+      table: { category: 'controls' },
     },
     iconSlot: {
       control: 'text',
@@ -43,75 +52,81 @@ const meta = {
       if: { arg: 'icon', eq: true },
     },
   },
-} satisfies Meta<typeof Button>;
+} satisfies Meta<StoryArgs>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const renderButton = (args: IProps & { iconSlot?: string }) => ({
-  components: { Button },
+const renderButton = (args: StoryArgs) => ({
+  components: { MaterialButton },
   setup: () => ({
     args,
-    normalizedModifiers: computed(() =>
+    normalizedModifiers: () =>
       Object.fromEntries(
-        ((args.modifiers as unknown as string[]) ?? []).map((modifier) => [modifier, true]),
-      ),
-    ),
+        (args.modifierSelection ?? []).map((modifier) => [modifier, true]),
+      ) as Partial<Record<Modifiers, boolean>>,
   }),
   template: `
-    <Button
+    <MaterialButton
       :type="args.type"
       :disabled="args.disabled"
       :icon="args.icon"
       :icon-side="args.iconSide"
-      :modifiers="normalizedModifiers"
+      :modifiers="normalizedModifiers()"
     >
       <template v-if="args.icon === true" #icon>{{ args.iconSlot || '✓' }}</template>
       Button
-    </Button>
+    </MaterialButton>
   `,
 });
 
 export const Default: Story = {
   render: renderButton,
-  args: { icon: false, modifiers: [] as unknown as IProps['modifiers'] },
+  args: { icon: false, modifiers: {}, modifierSelection: [] },
 };
 
 export const Primary: Story = {
   render: renderButton,
-  args: { modifiers: ['primary'] as unknown as IProps['modifiers'] },
+  args: { modifiers: { primary: true }, modifierSelection: ['primary'] },
 };
 
 export const Secondary: Story = {
   render: renderButton,
-  args: { modifiers: ['secondary'] as unknown as IProps['modifiers'] },
+  args: { modifiers: { secondary: true }, modifierSelection: ['secondary'] },
 };
 
 export const Success: Story = {
   render: renderButton,
-  args: { modifiers: ['success'] as unknown as IProps['modifiers'] },
+  args: { modifiers: { success: true }, modifierSelection: ['success'] },
 };
 
 export const Danger: Story = {
   render: renderButton,
-  args: { modifiers: ['danger'] as unknown as IProps['modifiers'] },
+  args: { modifiers: { danger: true }, modifierSelection: ['danger'] },
 };
 
 export const Stroke: Story = {
   render: renderButton,
-  args: { modifiers: ['secondary', 'stroke'] as unknown as IProps['modifiers'] },
+  args: {
+    modifiers: { secondary: true, stroke: true },
+    modifierSelection: ['secondary', 'stroke'],
+  },
 };
 
 export const Squared: Story = {
   render: renderButton,
-  args: { modifiers: ['primary', 'squared'] as unknown as IProps['modifiers'] },
+  args: {
+    modifiers: { primary: true, squared: true },
+    modifierSelection: ['primary', 'squared'],
+  },
 };
 
 export const Disabled: Story = {
   render: renderButton,
   args: {
     disabled: true,
-    modifiers: ['primary'] as unknown as IProps['modifiers'],
+    modifiers: { primary: true },
+    modifierSelection: ['primary'],
   },
 };
 
@@ -120,7 +135,8 @@ export const WithIconSlot: Story = {
   args: {
     icon: true,
     iconSlot: '＋',
-    modifiers: ['primary'] as unknown as IProps['modifiers'],
+    modifiers: { primary: true },
+    modifierSelection: ['primary'],
   },
 };
 
@@ -128,6 +144,7 @@ export const WithIconClass: Story = {
   render: renderButton,
   args: {
     icon: 'icon-check',
-    modifiers: ['primary'] as unknown as IProps['modifiers'],
+    modifiers: { primary: true },
+    modifierSelection: ['primary'],
   },
 };
